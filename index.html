@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agency Growth - White Label AI Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #ec7323;
+            --blue: #000022;
+            --orange-2: #ef4124;
+            --white: #ffffff;
+            --yellow: #efca08;
+            --off-white: #f3f3f3;
+            --gray: #666666;
+            --gray-2: #ece4b7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--blue);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .animate-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .animate-fade-in.reverse {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        
+        .animate-slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .animate-slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .animate-slide-left.reverse {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        
+        .animate-slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .animate-slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .animate-slide-right.reverse {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        
+        .animate-scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.8s ease-out;
+        }
+        
+        .animate-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .animate-scale.reverse {
+            opacity: 0;
+            transform: scale(1.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--orange), var(--yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--orange), var(--orange-2));
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(236, 115, 35, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--yellow);
+            padding: 16px 32px;
+            border: 2px solid var(--yellow);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--yellow);
+            color: var(--blue);
+            transform: translateY(-2px);
+        }
+        
+        .video-placeholder {
+            background: linear-gradient(135deg, rgba(236, 115, 35, 0.1), rgba(239, 202, 8, 0.1));
+            border: 2px dashed var(--orange);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 49%, rgba(236, 115, 35, 0.1) 49%, rgba(236, 115, 35, 0.1) 51%, transparent 51%);
+            background-size: 20px 20px;
+        }
+        
+        .video-placeholder i {
+            font-size: 4rem;
+            color: var(--orange);
+            z-index: 1;
+        }
+        
+        .screenshot-placeholder {
+            background: linear-gradient(135deg, rgba(239, 202, 8, 0.1), rgba(236, 115, 35, 0.1));
+            border: 2px dashed var(--yellow);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            position: relative;
+        }
+        
+        .screenshot-placeholder i {
+            font-size: 3rem;
+            color: var(--yellow);
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(236, 115, 35, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--orange);
+            box-shadow: 0 20px 40px rgba(236, 115, 35, 0.1);
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 34, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(236, 115, 35, 0.2);
+            padding: 1rem 0;
+        }
+        
+        .hero-section {
+            padding-top: 120px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section {
+            padding: 5rem 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(236, 115, 35, 0.2);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            border-color: var(--orange);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+            color: var(--gray-2);
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(236, 115, 35, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--orange);
+            box-shadow: 0 25px 50px rgba(236, 115, 35, 0.2);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--yellow);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--yellow);
+            color: var(--blue);
+            padding: 0.5rem;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding-top: 100px;
+                text-align: center;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .feature-card {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold gradient-text">AI Agency Growth</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="text-white hover:text-orange-400 transition">Features</a>
+                    <a href="#pricing" class="text-white hover:text-orange-400 transition">Pricing</a>
+                    <a href="#faq" class="text-white hover:text-orange-400 transition">FAQ</a>
+                    <a href="#contact" class="text-white hover:text-orange-400 transition">Contact</a>
+                </div>
+                <a href="#get-started" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-left">
+                    <h1 class="text-5xl lg:text-7xl font-bold mb-6">
+                        White Label <span class="gradient-text">AI Solutions</span> for Your Agency
+                    </h1>
+                    <p class="text-xl mb-8 text-gray-300">
+                        Transform your GoHighLevel agency with cutting-edge Voice AI and Conversational AI tools. 
+                        White label, resell, and scale your business with our powerful AI automation platform.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <a href="#demo" class="btn-primary">
+                            <i class="fas fa-play mr-2"></i>Watch Demo
+                        </a>
+                        <a href="#pricing" class="btn-secondary">
+                            <i class="fas fa-dollar-sign mr-2"></i>View Pricing
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-6 text-sm text-gray-400">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            No Setup Fees
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            Cancel Anytime
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            24/7 Support
+                        </div>
+                    </div>
+                </div>
+                <div class="animate-slide-right">
+                    <div class="video-placeholder" id="hero-video">
+                        <div class="text-center">
+                            <i class="fas fa-play-circle"></i>
+                            <h3 class="text-xl font-semibold mt-4">AI Demo Video</h3>
+                            <p class="text-gray-400">See our Voice AI in action</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                    Powerful <span class="gradient-text">AI Features</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Everything you need to automate customer interactions, qualify leads, 
+                    and grow your agency with cutting-edge AI technology.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card animate-fade-in">
+                    <div class="screenshot-placeholder mb-6">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">Voice AI Calling</h3>
+                    <p class="text-gray-300 mb-4">
+                        Handles both inbound and outbound calls automatically. Perfect for appointment reminders, 
+                        lead follow-ups, and customer support.
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Inbound & Outbound Calling</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Natural Conversations</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Call Recording</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card animate-fade-in">
+                    <div class="screenshot-placeholder mb-6">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">Conversational AI</h3>
+                    <p class="text-gray-300 mb-4">
+                        Automates SMS, text messaging, and chat across multiple platforms with intelligent, 
+                        context-aware responses.
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>SMS & Chat Automation</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Lead Qualification</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Multilingual Support</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card animate-fade-in">
+                    <div class="screenshot-placeholder mb-6">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">Appointment Management</h3>
+                    <p class="text-gray-300 mb-4">
+                        Automatically books, cancels, and reschedules appointments through voice interactions 
+                        to streamline your scheduling.
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Auto Booking</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Calendar Integration</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Reminder System</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card animate-fade-in">
+                    <div class="screenshot-placeholder mb-6">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">Voice Cloning</h3>
+                    <p class="text-gray-300 mb-4">
+                        Create customized voices that sound natural and professional, 
+                        maintaining brand consistency with unique voice options.
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>112 High-Quality Voices</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Multiple Languages</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Custom Brand Voices</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card animate-fade-in">
+                    <div class="screenshot-placeholder mb-6">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">Real-Time AI Training</h3>
+                    <p class="text-gray-300 mb-4">
+                        Continuously improves AI accuracy with thumbs-up/down feedback during conversations, 
+                        delivering smarter responses over time.
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Live Feedback System</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Self-Learning AI</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Custom Training</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card animate-fade-in">
+                    <div class="screenshot-placeholder mb-6">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 gradient-text">Analytics & Reporting</h3>
+                    <p class="text-gray-300 mb-4">
+                        Comprehensive analytics dashboard to track AI performance, conversion rates, 
+                        and optimize your customer interactions.
+                    </p>
+                    <ul class="text-sm text-gray-400 space-y-2">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Call Analytics</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Conversion Tracking</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Performance Reports</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo Section -->
+    <section class="section bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                    See It In <span class="gradient-text">Action</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Watch real demonstrations of our AI handling customer calls, 
+                    booking appointments, and managing conversations.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-slide-left">
+                    <div class="video-placeholder">
+                        <div class="text-center">
+                            <i class="fas fa-play-circle"></i>
+                            <h3 class="text-xl font-semibold mt-4">Voice AI Demo</h3>
+                            <p class="text-gray-400">Real customer conversation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="animate-slide-right">
+                    <h3 class="text-3xl font-bold mb-6">Real Customer Conversations</h3>
+                    <p class="text-gray-300 mb-6">
+                        Listen to actual recorded calls where our Voice AI successfully:
+                    </p>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-microphone text-orange-400 mr-3 mt-1"></i>
+                            <span>Answers customer questions naturally and professionally</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-calendar text-orange-400 mr-3 mt-1"></i>
+                            <span>Books appointments directly into your calendar</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-filter text-orange-400 mr-3 mt-1"></i>
+                            <span>Qualifies leads and collects contact information</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-handshake text-orange-400 mr-3 mt-1"></i>
+                            <span>Handles objections and guides toward conversion</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mt-16">
+                <div class="text-center animate-fade-in">
+                    <div class="video-placeholder mb-4" style="min-height: 200px;">
+                        <div class="text-center">
+                            <i class="fas fa-play-circle"></i>
+                            <p class="text-sm mt-2">Setup Tutorial</p>
+                        </div>
+                    </div>
+                    <h4 class="font-semibold text-orange-400">Quick Setup Guide</h4>
+                    <p class="text-sm text-gray-400">Get started in under 30 minutes</p>
+                </div>
+                <div class="text-center animate-fade-in">
+                    <div class="video-placeholder mb-4" style="min-height: 200px;">
+                        <div class="text-center">
+                            <i class="fas fa-play-circle"></i>
+                            <p class="text-sm mt-2">Integration Demo</p>
+                        </div>
+                    </div>
+                    <h4 class="font-semibold text-orange-400">GoHighLevel Integration</h4>
+                    <p class="text-sm text-gray-400">Seamless connection process</p>
+                </div>
+                <div class="text-center animate-fade-in">
+                    <div class="video-placeholder mb-4" style="min-height: 200px;">
+                        <div class="text-center">
+                            <i class="fas fa-play-circle"></i>
+                            <p class="text-sm mt-2">Success Stories</p>
+                        </div>
+                    </div>
+                    <h4 class="font-semibold text-orange-400">Client Testimonials</h4>
+                    <p class="text-sm text-gray-400">Real results from agencies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                    Simple <span class="gradient-text">Pricing</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Choose the plan that fits your agency size. All plans include white labeling 
+                    and the ability to resell to your clients.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="pricing-card animate-scale">
+                    <h3 class="text-2xl font-bold mb-4">Starter</h3>
+                    <div class="text-4xl font-bold mb-6 gradient-text">$97<span class="text-lg text-gray-400">/mo</span></div>
+                    <ul class="space-y-3 mb-8 text-left">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Sub-account connection</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Voice AI calling</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Conversational AI</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Basic support</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>White label ready</li>
+                    </ul>
+                    <a href="#" class="btn-primary w-full">Get Started</a>
+                </div>
+
+                <div class="pricing-card featured animate-scale">
+                    <h3 class="text-2xl font-bold mb-4">Professional</h3>
+                    <div class="text-4xl font-bold mb-6 gradient-text">$297<span class="text-lg text-gray-400">/mo</span></div>
+                    <ul class="space-y-3 mb-8 text-left">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Agency-level connection</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Multiple sub-accounts</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Advanced AI features</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Priority support</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Training & community</li>
+                    </ul>
+                    <a href="#" class="btn-primary w-full">Most Popular</a>
+                </div>
+
+                <div class="pricing-card animate-scale">
+                    <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
+                    <div class="text-4xl font-bold mb-6 gradient-text">$497<span class="text-lg text-gray-400">/mo</span></div>
+                    <ul class="space-y-3 mb-8 text-left">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Unlimited sub-accounts</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Custom AI training</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Advanced analytics</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>24/7 premium support</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Done-for-you setup</li>
+                    </ul>
+                    <a href="#" class="btn-primary w-full">Contact Sales</a>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 animate-fade-in">
+                <p class="text-gray-400 mb-4">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    Voice AI usage: $0.07 per minute (rebill at any price to your clients)
+                </p>
+                <p class="text-sm text-gray-500">
+                    No setup fees • Cancel anytime • 30-day money back guarantee
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-fade-in">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                    Frequently Asked <span class="gradient-text">Questions</span>
+                </h2>
+                <p class="text-xl text-gray-300">
+                    Everything you need to know about our AI solutions and how they integrate with your business.
+                </p>
+            </div>
+
+            <div class="space-y-4 animate-fade-in">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I White Label and Resell these AI tools to my clients?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="video-placeholder mb-4" style="min-height: 150px;">
+                            <div class="text-center">
+                                <i class="fas fa-play-circle"></i>
+                                <p class="text-sm mt-2">White Label Demo</p>
+                            </div>
+                        </div>
+                        <p>Yes! Whether you're on the $97, $297, or $497 GHL/HighLevel plan, you can resell AI solutions to your SaaS clients inside your GHL sub-accounts and charge whatever you want.</p>
+                        <p class="mt-2"><strong>Most members make their investment back within the first few days to a week, everything after that is pure profit</strong>. Plus, the software runs tech-free, so you don't have to worry about complicated setups or maintenance!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Does this integrate with my GHL/HighLevel account?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="screenshot-placeholder mb-4" style="min-height: 120px;">
+                            <div class="text-center">
+                                <i class="fas fa-laptop-code"></i>
+                                <p class="text-sm mt-2">Integration Screenshot</p>
+                            </div>
+                        </div>
+                        <p>Yes! Our White Label AI integrates directly into your own GoHighLevel (GHL) agency account (not a sub-account under us). This gives you full ownership and control over your AI within your GHL ecosystem, allowing you to brand it, sell it, and scale it your way.</p>
+                        <p class="mt-2">It works with all GHL plans: $97, $297, and $497, so you can start automating and growing your business regardless of your subscription level.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>What are the costs for Voice & Conversational AI usage?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Voice AI Calling:</strong> Only $0.07 per minute (pricing subject to change)</p>
+                        <ul class="list-disc list-inside mt-2 space-y-1">
+                            <li>Rebill clients at any price</li>
+                            <li>Purchase minutes directly in your AI dashboard</li>
+                            <li>No A2P approval required for Voice Calling numbers</li>
+                        </ul>
+                        <p class="mt-2"><strong>Conversational AI SMS/Texting:</strong> Based on your GHL Twilio/LC Phone number usage costs</p>
+                        <p class="mt-2"><strong>Transparent Pricing:</strong> No hidden fees, no marked-up charges, no overpriced monthly add-ons. Just straightforward, flexible pricing that works for your business.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you provide training and support?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="video-placeholder mb-4" style="min-height: 150px;">
+                            <div class="text-center">
+                                <i class="fas fa-play-circle"></i>
+                                <p class="text-sm mt-2">Training Overview</p>
+                            </div>
+                        </div>
+                        <p>Yes! I have a private Skool Community where I provide getting started training (Quick Launch), and lots of real-world strategies, training, GHL snapshots, AI prompts, templates, and strategy-focused Zoom calls to help you grow and scale your SaaS business using AI.</p>
+                        <p class="mt-2">I host 2 private Zoom calls per week, that's 8 opportunities per month to get expert assistance and guidance. You're never on your own!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I cancel or pause my account?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>NO! YOU ARE LOCKED IN FOR LIFE!</strong> Just kidding... yes, of course, you can cancel anytime! There are no cancellation fees, contracts, or shady fine print. Just give us 3-5 business days notice, and you're good to go.</p>
+                        <p class="mt-2">However, <strong>pausing your account isn't an option</strong>. If you cancel, your account is permanently deleted, and all content is lost with no way to restore it. So make sure you're certain before taking that step!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section bg-gradient-to-r from-orange-600 to-yellow-500">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="animate-fade-in">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-white">
+                    Ready to Transform Your Agency?
+                </h2>
+                <p class="text-xl mb-8 text-white opacity-90">
+                    Join hundreds of agencies already using our AI solutions to automate customer interactions, 
+                    qualify leads, and scale their business. Start your free trial today!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
+                        <i class="fas fa-rocket mr-2"></i>Start Free Trial
+                    </a>
+                    <a href="#" class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-blue-900 transition">
+                        <i class="fas fa-calendar mr-2"></i>Book a Demo
+                    </a>
+                </div>
+                <p class="text-sm mt-6 text-white opacity-75">
+                    No credit card required • Setup in 30 minutes • Cancel anytime
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold gradient-text mb-4">AI Agency Growth</h3>
+                    <p class="text-gray-400 mb-4">
+                        Empowering agencies with cutting-edge AI solutions for customer automation and lead generation.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-orange-400"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-orange-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-orange-400"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-orange-400"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-orange-400">Voice AI</a></li>
+                        <li><a href="#" class="hover:text-orange-400">Conversational AI</a></li>
+                        <li><a href="#" class="hover:text-orange-400">Integrations</a></li>
+                        <li><a href="#" class="hover:text-orange-400">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-orange-400">Documentation</a></li>
+                        <li><a href="#" class="hover:text-orange-400">Community</a></li>
+                        <li><a href="#" class="hover:text-orange-400">Help Center</a></li>
+                        <li><a href="#" class="hover:text-orange-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-orange-400">About</a></li>
+                        <li><a href="#" class="hover:text-orange-400">Blog</a></li>
+                        <li><a href="#" class="hover:text-orange-400">Careers</a></li>
+                        <li><a href="#" class="hover:text-orange-400">Privacy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 AI Agency Growth. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Track scroll direction and position
+        let lastScrollTop = 0;
+        let scrollDirection = 'down';
+        
+        // Enhanced Intersection Observer for bidirectional animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const bidirectionalObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const element = entry.target;
+                
+                if (entry.isIntersecting) {
+                    // Element is entering viewport
+                    element.classList.remove('reverse');
+                    element.classList.add('visible');
+                } else {
+                    // Element is leaving viewport
+                    if (scrollDirection === 'up') {
+                        // When scrolling up, apply reverse animation
+                        element.classList.remove('visible');
+                        element.classList.add('reverse');
+                    } else {
+                        // When scrolling down and element exits, reset for next entrance
+                        element.classList.remove('visible', 'reverse');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate-fade-in, .animate-slide-left, .animate-slide-right, .animate-scale').forEach((el) => {
+            bidirectionalObserver.observe(el);
+        });
+
+        // Track scroll direction
+        window.addEventListener('scroll', () => {
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (currentScrollTop > lastScrollTop) {
+                scrollDirection = 'down';
+            } else {
+                scrollDirection = 'up';
+            }
+            
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+            
+            // Navbar background on scroll
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(0, 0, 34, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(0, 0, 34, 0.95)';
+            }
+        });
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+                document.querySelectorAll('.faq-question i').forEach(i => i.style.transform = 'rotate(0deg)');
+                
+                // Open clicked FAQ
+                answer.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Video placeholder click handlers
+        document.querySelectorAll('.video-placeholder').forEach(placeholder => {
+            placeholder.addEventListener('click', function() {
+                // Here you would typically open a modal or navigate to video
+                console.log('Video placeholder clicked');
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+
+        // Staggered animations for grid items
+        const observeStaggered = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100); // 100ms delay between each item
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Apply staggered animation to feature cards
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDqmtPIqpBLReb8lwoET7mCMOBvBG46Ui2HrOcCSYXiJW6Gl6oCzpIlqENSFjC%2Fn%2FqqUGJAiMhI%2BvICrMUdCNS%2FpHYyvsXZZ8SvVh2FlVVnvyxIMUqsd7QGiBcoW0E4c9xHVQzh9kEpfF%2B5v55pJ1oR5BANkub03eEHd3LsssA6LzcZxyKidxAxVoZCWrqj0Y78Vdcl1%2BL5Lq5Jws5yOXB7U2TBQr3I20mkPi%2FNX3cv2i7gPIexnkLzyrSxuFBjA%2FSBY7oNs3CcQo1cdHb7I3sIxUZ4NnUkkvPXh0%2BYVz6RhuMh8uiPX9N4n5hWrVKbBnTjB1svAPd2kFoUhbAVjJ7ucw8BsI5EBCRD38YhrDpQBy1%2BUGkxNQdmbFijCXo5ufeew1XFxJeSrKR2mOcGRqge0B6gdtW2IEHGBK5GtLeQxAyXewZWb0DtkuOsVjj24GCIkp8o6nHLLtVXHbRokTCBD07fP1ohurxZFN8FIKgD4KCvE5en1p1K39K9HqST7Um2Vyo3XP2hHTkBHPrLjQGoI%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDqmtPIqpBLReb8lwoET7mCMOBvBG46Ui2HrOcCSYXiJW6Gl6oCzpIlqENSFjC/n/qqUGJAiMhI+vICrMUdCNS/pHYyvsXZZ8SvVh2FlVVnvyxIMUqsd7QGiBcoW0E4c9xHVQzh9kEpfF+5v55pJ1oR5BANkub03eEHd3LsssA6LzcZxyKidxAxVoZCWrqj0Y78Vdcl1+L5Lq5Jws5yOXB7U2TBQr3I20mkPi/NX3cv2i7gPIexnkLzyrSxuFBjA/SBY7oNs3CcQo1cdHb7I3sIxUZ4NnUkkvPXh0+YVz6RhuMh8uiPX9N4n5hWrVKbBnTjB1svAPd2kFoUhbAVjJ7ucw8BsI5EBCRD38YhrDpQBy1+UGkxNQdmbFijCXo5ufeew1XFxJeSrKR2mOcGRqge0B6gdtW2IEHGBK5GtLeQxAyXewZWb0DtkuOsVjj24GCIkp8o6nHLLtVXHbRokTCBD07fP1ohurxZFN8FIKgD4KCvE5en1p1K39K9HqST7Um2Vyo3XP2hHTkBHPrLjQGoI=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
