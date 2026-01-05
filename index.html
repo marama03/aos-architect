@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Agency Growth - White Label AI Solutions</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --orange: #ec7323;
@@ -18,13 +20,13 @@
             --gray: #666666;
             --gray-2: #ece4b7;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--blue);
@@ -32,78 +34,78 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        
+
         .animate-fade-in {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease-out;
         }
-        
+
         .animate-fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         .animate-fade-in.reverse {
             opacity: 0;
             transform: translateY(-30px);
         }
-        
+
         .animate-slide-left {
             opacity: 0;
             transform: translateX(-50px);
             transition: all 0.8s ease-out;
         }
-        
+
         .animate-slide-left.visible {
             opacity: 1;
             transform: translateX(0);
         }
-        
+
         .animate-slide-left.reverse {
             opacity: 0;
             transform: translateX(50px);
         }
-        
+
         .animate-slide-right {
             opacity: 0;
             transform: translateX(50px);
             transition: all 0.8s ease-out;
         }
-        
+
         .animate-slide-right.visible {
             opacity: 1;
             transform: translateX(0);
         }
-        
+
         .animate-slide-right.reverse {
             opacity: 0;
             transform: translateX(-50px);
         }
-        
+
         .animate-scale {
             opacity: 0;
             transform: scale(0.8);
             transition: all 0.8s ease-out;
         }
-        
+
         .animate-scale.visible {
             opacity: 1;
             transform: scale(1);
         }
-        
+
         .animate-scale.reverse {
             opacity: 0;
             transform: scale(1.2);
         }
-        
+
         .gradient-text {
             background: linear-gradient(135deg, var(--orange), var(--yellow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .btn-primary {
             background: linear-gradient(135deg, var(--orange), var(--orange-2));
             color: var(--white);
@@ -117,12 +119,12 @@
             cursor: pointer;
             text-align: center;
         }
-        
+
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(236, 115, 35, 0.3);
         }
-        
+
         .btn-secondary {
             background: transparent;
             color: var(--yellow);
@@ -134,13 +136,13 @@
             display: inline-block;
             transition: all 0.3s ease;
         }
-        
+
         .btn-secondary:hover {
             background: var(--yellow);
             color: var(--blue);
             transform: translateY(-2px);
         }
-        
+
         .video-placeholder {
             background: linear-gradient(135deg, rgba(236, 115, 35, 0.1), rgba(239, 202, 8, 0.1));
             border: 2px dashed var(--orange);
@@ -152,7 +154,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .video-placeholder::before {
             content: '';
             position: absolute;
@@ -163,13 +165,13 @@
             background: linear-gradient(45deg, transparent 49%, rgba(236, 115, 35, 0.1) 49%, rgba(236, 115, 35, 0.1) 51%, transparent 51%);
             background-size: 20px 20px;
         }
-        
+
         .video-placeholder i {
             font-size: 4rem;
             color: var(--orange);
             z-index: 1;
         }
-        
+
         .screenshot-placeholder {
             background: linear-gradient(135deg, rgba(239, 202, 8, 0.1), rgba(236, 115, 35, 0.1));
             border: 2px dashed var(--yellow);
@@ -180,12 +182,12 @@
             min-height: 200px;
             position: relative;
         }
-        
+
         .screenshot-placeholder i {
             font-size: 3rem;
             color: var(--yellow);
         }
-        
+
         .feature-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -194,13 +196,13 @@
             padding: 2rem;
             transition: all 0.3s ease;
         }
-        
+
         .feature-card:hover {
             transform: translateY(-5px);
             border-color: var(--orange);
             box-shadow: 0 20px 40px rgba(236, 115, 35, 0.1);
         }
-        
+
         .navbar {
             position: fixed;
             top: 0;
@@ -212,20 +214,20 @@
             border-bottom: 1px solid rgba(236, 115, 35, 0.2);
             padding: 1rem 0;
         }
-        
+
         .hero-section {
             padding-top: 120px;
             min-height: 100vh;
             display: flex;
             align-items: center;
         }
-        
+
         .section {
             padding: 5rem 0;
             position: relative;
             z-index: 1;
         }
-        
+
         .faq-item {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(236, 115, 35, 0.2);
@@ -234,11 +236,11 @@
             overflow: hidden;
             transition: all 0.3s ease;
         }
-        
+
         .faq-item:hover {
             border-color: var(--orange);
         }
-        
+
         .faq-question {
             padding: 1.5rem;
             cursor: pointer;
@@ -247,17 +249,17 @@
             align-items: center;
             font-weight: 600;
         }
-        
+
         .faq-answer {
             padding: 0 1.5rem 1.5rem;
             display: none;
             color: var(--gray-2);
         }
-        
+
         .faq-answer.active {
             display: block;
         }
-        
+
         .pricing-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -269,18 +271,18 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .pricing-card:hover {
             transform: translateY(-10px);
             border-color: var(--orange);
             box-shadow: 0 25px 50px rgba(236, 115, 35, 0.2);
         }
-        
+
         .pricing-card.featured {
             border-color: var(--yellow);
             transform: scale(1.05);
         }
-        
+
         .pricing-card.featured::before {
             content: 'MOST POPULAR';
             position: absolute;
@@ -293,23 +295,24 @@
             font-weight: bold;
             font-size: 0.8rem;
         }
-        
+
         @media (max-width: 768px) {
             .hero-section {
                 padding-top: 100px;
                 text-align: center;
             }
-            
+
             .section {
                 padding: 3rem 0;
             }
-            
+
             .feature-card {
                 margin-bottom: 2rem;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -335,11 +338,11 @@
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="animate-slide-left">
                     <h1 class="text-5xl lg:text-7xl font-bold mb-6">
-                        White Label <span class="gradient-text">AI Solutions</span> for Your Agency
+                        Stop Managing Noise. <br>Start Architecting <span class="gradient-text">Leverage.</span>
                     </h1>
                     <p class="text-xl mb-8 text-gray-300">
-                        Transform your GoHighLevel agency with cutting-edge Voice AI and Conversational AI tools. 
-                        White label, resell, and scale your business with our powerful AI automation platform.
+                        Most companies don’t have a growth problem—they have an Execution Problem. We install Private AI
+                        Operating Systems (AOS) that decouple your revenue from your headcount dependency.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 mb-8">
                         <a href="#demo" class="btn-primary">
@@ -385,7 +388,7 @@
                     Powerful <span class="gradient-text">AI Features</span>
                 </h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Everything you need to automate customer interactions, qualify leads, 
+                    Everything you need to automate customer interactions, qualify leads,
                     and grow your agency with cutting-edge AI technology.
                 </p>
             </div>
@@ -397,7 +400,7 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-4 gradient-text">Voice AI Calling</h3>
                     <p class="text-gray-300 mb-4">
-                        Handles both inbound and outbound calls automatically. Perfect for appointment reminders, 
+                        Handles both inbound and outbound calls automatically. Perfect for appointment reminders,
                         lead follow-ups, and customer support.
                     </p>
                     <ul class="text-sm text-gray-400 space-y-2">
@@ -413,7 +416,7 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-4 gradient-text">Conversational AI</h3>
                     <p class="text-gray-300 mb-4">
-                        Automates SMS, text messaging, and chat across multiple platforms with intelligent, 
+                        Automates SMS, text messaging, and chat across multiple platforms with intelligent,
                         context-aware responses.
                     </p>
                     <ul class="text-sm text-gray-400 space-y-2">
@@ -429,7 +432,7 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-4 gradient-text">Appointment Management</h3>
                     <p class="text-gray-300 mb-4">
-                        Automatically books, cancels, and reschedules appointments through voice interactions 
+                        Automatically books, cancels, and reschedules appointments through voice interactions
                         to streamline your scheduling.
                     </p>
                     <ul class="text-sm text-gray-400 space-y-2">
@@ -445,7 +448,7 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-4 gradient-text">Voice Cloning</h3>
                     <p class="text-gray-300 mb-4">
-                        Create customized voices that sound natural and professional, 
+                        Create customized voices that sound natural and professional,
                         maintaining brand consistency with unique voice options.
                     </p>
                     <ul class="text-sm text-gray-400 space-y-2">
@@ -461,7 +464,7 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-4 gradient-text">Real-Time AI Training</h3>
                     <p class="text-gray-300 mb-4">
-                        Continuously improves AI accuracy with thumbs-up/down feedback during conversations, 
+                        Continuously improves AI accuracy with thumbs-up/down feedback during conversations,
                         delivering smarter responses over time.
                     </p>
                     <ul class="text-sm text-gray-400 space-y-2">
@@ -477,7 +480,7 @@
                     </div>
                     <h3 class="text-xl font-semibold mb-4 gradient-text">Analytics & Reporting</h3>
                     <p class="text-gray-300 mb-4">
-                        Comprehensive analytics dashboard to track AI performance, conversion rates, 
+                        Comprehensive analytics dashboard to track AI performance, conversion rates,
                         and optimize your customer interactions.
                     </p>
                     <ul class="text-sm text-gray-400 space-y-2">
@@ -498,7 +501,7 @@
                     See It In <span class="gradient-text">Action</span>
                 </h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Watch real demonstrations of our AI handling customer calls, 
+                    Watch real demonstrations of our AI handling customer calls,
                     booking appointments, and managing conversations.
                 </p>
             </div>
@@ -582,7 +585,7 @@
                     Simple <span class="gradient-text">Pricing</span>
                 </h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Choose the plan that fits your agency size. All plans include white labeling 
+                    Choose the plan that fits your agency size. All plans include white labeling
                     and the ability to resell to your clients.
                 </p>
             </div>
@@ -590,7 +593,8 @@
             <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <div class="pricing-card animate-scale">
                     <h3 class="text-2xl font-bold mb-4">Starter</h3>
-                    <div class="text-4xl font-bold mb-6 gradient-text">$97<span class="text-lg text-gray-400">/mo</span></div>
+                    <div class="text-4xl font-bold mb-6 gradient-text">$97<span class="text-lg text-gray-400">/mo</span>
+                    </div>
                     <ul class="space-y-3 mb-8 text-left">
                         <li><i class="fas fa-check text-green-400 mr-2"></i>Sub-account connection</li>
                         <li><i class="fas fa-check text-green-400 mr-2"></i>Voice AI calling</li>
@@ -603,7 +607,8 @@
 
                 <div class="pricing-card featured animate-scale">
                     <h3 class="text-2xl font-bold mb-4">Professional</h3>
-                    <div class="text-4xl font-bold mb-6 gradient-text">$297<span class="text-lg text-gray-400">/mo</span></div>
+                    <div class="text-4xl font-bold mb-6 gradient-text">$297<span
+                            class="text-lg text-gray-400">/mo</span></div>
                     <ul class="space-y-3 mb-8 text-left">
                         <li><i class="fas fa-check text-green-400 mr-2"></i>Agency-level connection</li>
                         <li><i class="fas fa-check text-green-400 mr-2"></i>Multiple sub-accounts</li>
@@ -616,7 +621,8 @@
 
                 <div class="pricing-card animate-scale">
                     <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
-                    <div class="text-4xl font-bold mb-6 gradient-text">$497<span class="text-lg text-gray-400">/mo</span></div>
+                    <div class="text-4xl font-bold mb-6 gradient-text">$497<span
+                            class="text-lg text-gray-400">/mo</span></div>
                     <ul class="space-y-3 mb-8 text-left">
                         <li><i class="fas fa-check text-green-400 mr-2"></i>Unlimited sub-accounts</li>
                         <li><i class="fas fa-check text-green-400 mr-2"></i>Custom AI training</li>
@@ -665,8 +671,11 @@
                                 <p class="text-sm mt-2">White Label Demo</p>
                             </div>
                         </div>
-                        <p>Yes! Whether you're on the $97, $297, or $497 GHL/HighLevel plan, you can resell AI solutions to your SaaS clients inside your GHL sub-accounts and charge whatever you want.</p>
-                        <p class="mt-2"><strong>Most members make their investment back within the first few days to a week, everything after that is pure profit</strong>. Plus, the software runs tech-free, so you don't have to worry about complicated setups or maintenance!</p>
+                        <p>Yes! Whether you're on the $97, $297, or $497 GHL/HighLevel plan, you can resell AI solutions
+                            to your SaaS clients inside your GHL sub-accounts and charge whatever you want.</p>
+                        <p class="mt-2"><strong>Most members make their investment back within the first few days to a
+                                week, everything after that is pure profit</strong>. Plus, the software runs tech-free,
+                            so you don't have to worry about complicated setups or maintenance!</p>
                     </div>
                 </div>
 
@@ -682,8 +691,11 @@
                                 <p class="text-sm mt-2">Integration Screenshot</p>
                             </div>
                         </div>
-                        <p>Yes! Our White Label AI integrates directly into your own GoHighLevel (GHL) agency account (not a sub-account under us). This gives you full ownership and control over your AI within your GHL ecosystem, allowing you to brand it, sell it, and scale it your way.</p>
-                        <p class="mt-2">It works with all GHL plans: $97, $297, and $497, so you can start automating and growing your business regardless of your subscription level.</p>
+                        <p>Yes! Our White Label AI integrates directly into your own GoHighLevel (GHL) agency account
+                            (not a sub-account under us). This gives you full ownership and control over your AI within
+                            your GHL ecosystem, allowing you to brand it, sell it, and scale it your way.</p>
+                        <p class="mt-2">It works with all GHL plans: $97, $297, and $497, so you can start automating
+                            and growing your business regardless of your subscription level.</p>
                     </div>
                 </div>
 
@@ -699,8 +711,11 @@
                             <li>Purchase minutes directly in your AI dashboard</li>
                             <li>No A2P approval required for Voice Calling numbers</li>
                         </ul>
-                        <p class="mt-2"><strong>Conversational AI SMS/Texting:</strong> Based on your GHL Twilio/LC Phone number usage costs</p>
-                        <p class="mt-2"><strong>Transparent Pricing:</strong> No hidden fees, no marked-up charges, no overpriced monthly add-ons. Just straightforward, flexible pricing that works for your business.</p>
+                        <p class="mt-2"><strong>Conversational AI SMS/Texting:</strong> Based on your GHL Twilio/LC
+                            Phone number usage costs</p>
+                        <p class="mt-2"><strong>Transparent Pricing:</strong> No hidden fees, no marked-up charges, no
+                            overpriced monthly add-ons. Just straightforward, flexible pricing that works for your
+                            business.</p>
                     </div>
                 </div>
 
@@ -716,8 +731,11 @@
                                 <p class="text-sm mt-2">Training Overview</p>
                             </div>
                         </div>
-                        <p>Yes! I have a private Skool Community where I provide getting started training (Quick Launch), and lots of real-world strategies, training, GHL snapshots, AI prompts, templates, and strategy-focused Zoom calls to help you grow and scale your SaaS business using AI.</p>
-                        <p class="mt-2">I host 2 private Zoom calls per week, that's 8 opportunities per month to get expert assistance and guidance. You're never on your own!</p>
+                        <p>Yes! I have a private Skool Community where I provide getting started training (Quick
+                            Launch), and lots of real-world strategies, training, GHL snapshots, AI prompts, templates,
+                            and strategy-focused Zoom calls to help you grow and scale your SaaS business using AI.</p>
+                        <p class="mt-2">I host 2 private Zoom calls per week, that's 8 opportunities per month to get
+                            expert assistance and guidance. You're never on your own!</p>
                     </div>
                 </div>
 
@@ -727,8 +745,12 @@
                         <i class="fas fa-chevron-down transition-transform"></i>
                     </div>
                     <div class="faq-answer">
-                        <p><strong>NO! YOU ARE LOCKED IN FOR LIFE!</strong> Just kidding... yes, of course, you can cancel anytime! There are no cancellation fees, contracts, or shady fine print. Just give us 3-5 business days notice, and you're good to go.</p>
-                        <p class="mt-2">However, <strong>pausing your account isn't an option</strong>. If you cancel, your account is permanently deleted, and all content is lost with no way to restore it. So make sure you're certain before taking that step!</p>
+                        <p><strong>NO! YOU ARE LOCKED IN FOR LIFE!</strong> Just kidding... yes, of course, you can
+                            cancel anytime! There are no cancellation fees, contracts, or shady fine print. Just give us
+                            3-5 business days notice, and you're good to go.</p>
+                        <p class="mt-2">However, <strong>pausing your account isn't an option</strong>. If you cancel,
+                            your account is permanently deleted, and all content is lost with no way to restore it. So
+                            make sure you're certain before taking that step!</p>
                     </div>
                 </div>
             </div>
@@ -743,14 +765,16 @@
                     Ready to Transform Your Agency?
                 </h2>
                 <p class="text-xl mb-8 text-white opacity-90">
-                    Join hundreds of agencies already using our AI solutions to automate customer interactions, 
+                    Join hundreds of agencies already using our AI solutions to automate customer interactions,
                     qualify leads, and scale their business. Start your free trial today!
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
+                    <a href="#"
+                        class="bg-white text-blue-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
                         <i class="fas fa-rocket mr-2"></i>Start Free Trial
                     </a>
-                    <a href="#" class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-blue-900 transition">
+                    <a href="#"
+                        class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-blue-900 transition">
                         <i class="fas fa-calendar mr-2"></i>Book a Demo
                     </a>
                 </div>
@@ -815,7 +839,7 @@
         // Track scroll direction and position
         let lastScrollTop = 0;
         let scrollDirection = 'down';
-        
+
         // Enhanced Intersection Observer for bidirectional animations
         const observerOptions = {
             threshold: 0.1,
@@ -825,7 +849,7 @@
         const bidirectionalObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 const element = entry.target;
-                
+
                 if (entry.isIntersecting) {
                     // Element is entering viewport
                     element.classList.remove('reverse');
@@ -852,15 +876,15 @@
         // Track scroll direction
         window.addEventListener('scroll', () => {
             const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
+
             if (currentScrollTop > lastScrollTop) {
                 scrollDirection = 'down';
             } else {
                 scrollDirection = 'up';
             }
-            
+
             lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
-            
+
             // Navbar background on scroll
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 100) {
@@ -874,7 +898,7 @@
         function toggleFaq(element) {
             const answer = element.nextElementSibling;
             const icon = element.querySelector('i');
-            
+
             if (answer.classList.contains('active')) {
                 answer.classList.remove('active');
                 icon.style.transform = 'rotate(0deg)';
@@ -882,7 +906,7 @@
                 // Close all other FAQs
                 document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
                 document.querySelectorAll('.faq-question i').forEach(i => i.style.transform = 'rotate(0deg)');
-                
+
                 // Open clicked FAQ
                 answer.classList.add('active');
                 icon.style.transform = 'rotate(180deg)';
@@ -905,7 +929,7 @@
 
         // Video placeholder click handlers
         document.querySelectorAll('.video-placeholder').forEach(placeholder => {
-            placeholder.addEventListener('click', function() {
+            placeholder.addEventListener('click', function () {
                 // Here you would typically open a modal or navigate to video
                 console.log('Video placeholder clicked');
                 this.style.transform = 'scale(0.95)';
@@ -932,13 +956,13 @@
         });
     </script>
 </body>
+
 </html>
-    <script id="html_badge_script1">
-        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
-            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDqmtPIqpBLReb8lwoET7mCMOBvBG46Ui2HrOcCSYXiJW6Gl6oCzpIlqENSFjC%2Fn%2FqqUGJAiMhI%2BvICrMUdCNS%2FpHYyvsXZZ8SvVh2FlVVnvyxIMUqsd7QGiBcoW0E4c9xHVQzh9kEpfF%2B5v55pJ1oR5BANkub03eEHd3LsssA6LzcZxyKidxAxVoZCWrqj0Y78Vdcl1%2BL5Lq5Jws5yOXB7U2TBQr3I20mkPi%2FNX3cv2i7gPIexnkLzyrSxuFBjA%2FSBY7oNs3CcQo1cdHb7I3sIxUZ4NnUkkvPXh0%2BYVz6RhuMh8uiPX9N4n5hWrVKbBnTjB1svAPd2kFoUhbAVjJ7ucw8BsI5EBCRD38YhrDpQBy1%2BUGkxNQdmbFijCXo5ufeew1XFxJeSrKR2mOcGRqge0B6gdtW2IEHGBK5GtLeQxAyXewZWb0DtkuOsVjj24GCIkp8o6nHLLtVXHbRokTCBD07fP1ohurxZFN8FIKgD4KCvE5en1p1K39K9HqST7Um2Vyo3XP2hHTkBHPrLjQGoI%3D";
-        window.__genspark_locale = "en-US";
-        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDqmtPIqpBLReb8lwoET7mCMOBvBG46Ui2HrOcCSYXiJW6Gl6oCzpIlqENSFjC/n/qqUGJAiMhI+vICrMUdCNS/pHYyvsXZZ8SvVh2FlVVnvyxIMUqsd7QGiBcoW0E4c9xHVQzh9kEpfF+5v55pJ1oR5BANkub03eEHd3LsssA6LzcZxyKidxAxVoZCWrqj0Y78Vdcl1+L5Lq5Jws5yOXB7U2TBQr3I20mkPi/NX3cv2i7gPIexnkLzyrSxuFBjA/SBY7oNs3CcQo1cdHb7I3sIxUZ4NnUkkvPXh0+YVz6RhuMh8uiPX9N4n5hWrVKbBnTjB1svAPd2kFoUhbAVjJ7ucw8BsI5EBCRD38YhrDpQBy1+UGkxNQdmbFijCXo5ufeew1XFxJeSrKR2mOcGRqge0B6gdtW2IEHGBK5GtLeQxAyXewZWb0DtkuOsVjj24GCIkp8o6nHLLtVXHbRokTCBD07fP1ohurxZFN8FIKgD4KCvE5en1p1K39K9HqST7Um2Vyo3XP2hHTkBHPrLjQGoI=";
-    </script>
-    
-    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
-    
+<script id="html_badge_script1">
+    window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+        "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDqmtPIqpBLReb8lwoET7mCMOBvBG46Ui2HrOcCSYXiJW6Gl6oCzpIlqENSFjC%2Fn%2FqqUGJAiMhI%2BvICrMUdCNS%2FpHYyvsXZZ8SvVh2FlVVnvyxIMUqsd7QGiBcoW0E4c9xHVQzh9kEpfF%2B5v55pJ1oR5BANkub03eEHd3LsssA6LzcZxyKidxAxVoZCWrqj0Y78Vdcl1%2BL5Lq5Jws5yOXB7U2TBQr3I20mkPi%2FNX3cv2i7gPIexnkLzyrSxuFBjA%2FSBY7oNs3CcQo1cdHb7I3sIxUZ4NnUkkvPXh0%2BYVz6RhuMh8uiPX9N4n5hWrVKbBnTjB1svAPd2kFoUhbAVjJ7ucw8BsI5EBCRD38YhrDpQBy1%2BUGkxNQdmbFijCXo5ufeew1XFxJeSrKR2mOcGRqge0B6gdtW2IEHGBK5GtLeQxAyXewZWb0DtkuOsVjj24GCIkp8o6nHLLtVXHbRokTCBD07fP1ohurxZFN8FIKgD4KCvE5en1p1K39K9HqST7Um2Vyo3XP2hHTkBHPrLjQGoI%3D";
+    window.__genspark_locale = "en-US";
+    window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDqmtPIqpBLReb8lwoET7mCMOBvBG46Ui2HrOcCSYXiJW6Gl6oCzpIlqENSFjC/n/qqUGJAiMhI+vICrMUdCNS/pHYyvsXZZ8SvVh2FlVVnvyxIMUqsd7QGiBcoW0E4c9xHVQzh9kEpfF+5v55pJ1oR5BANkub03eEHd3LsssA6LzcZxyKidxAxVoZCWrqj0Y78Vdcl1+L5Lq5Jws5yOXB7U2TBQr3I20mkPi/NX3cv2i7gPIexnkLzyrSxuFBjA/SBY7oNs3CcQo1cdHb7I3sIxUZ4NnUkkvPXh0+YVz6RhuMh8uiPX9N4n5hWrVKbBnTjB1svAPd2kFoUhbAVjJ7ucw8BsI5EBCRD38YhrDpQBy1+UGkxNQdmbFijCXo5ufeew1XFxJeSrKR2mOcGRqge0B6gdtW2IEHGBK5GtLeQxAyXewZWb0DtkuOsVjj24GCIkp8o6nHLLtVXHbRokTCBD07fP1ohurxZFN8FIKgD4KCvE5en1p1K39K9HqST7Um2Vyo3XP2hHTkBHPrLjQGoI=";
+</script>
+
+<script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
